@@ -1,0 +1,38 @@
+<hibernate-mapping>
+    <class name="com.psk_project.car_rental.db.Worker" table="PRACOWNIK">
+        <id name="workerID" type="int">
+            <column name="ID_PRACOWNIKA" precision="10" scale="0"></column>
+            <generator class="assigned"/>
+        </id>
+        <property name="name" type="string">
+            <column name="IMIE" length="30" not-null="true"/>
+        </property>
+        <property name="surname" type="string">
+            <column name="NAZWISKO" length="30" not-null="true"/>
+        </property>
+        <property name="pesel" type="string">
+            <column name="PESEL" length="11" not-null="true"/>
+        </property>
+        <property name="phone" type="string">
+            <column name="NR_TELEFONU" length="12" not-null="true"/>
+        </property>
+        <property name="sex" type="string">
+            <column name="PLEC" length="1" not-null="true"/>
+        </property>
+        <property name="city" type="string">
+            <column name="MIEJSCOWOSC" length="30" not-null="true"/>
+        </property>
+        <property name="address" type="string">
+            <column name="ADRES" length="30" not-null="true"/>
+        </property>
+        <property name="postal" type="string">
+            <column name="KOD_POCZTOWY" length="6" not-null="true"/>
+        </property>
+        <property name="postOffice" type="string">
+            <column name="POCZTA" length="30" not-null="true"/>
+        </property>
+        <property name="rentalID" type="int">
+            <column name="ID_PLACOWKI" precision="10" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>
