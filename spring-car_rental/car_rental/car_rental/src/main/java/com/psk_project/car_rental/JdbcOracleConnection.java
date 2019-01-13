@@ -20,7 +20,7 @@ public class JdbcOracleConnection {
             Class.forName("oracle.jdbc.OracleDriver");
 
             // METHOD #2
-            String dbURL2 = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String dbURL2 = "jdbc:oracle:thin:@localhost:1521:xe";
 
 
             conn = DriverManager.getConnection(dbURL2, DbPass.username, DbPass.password);
