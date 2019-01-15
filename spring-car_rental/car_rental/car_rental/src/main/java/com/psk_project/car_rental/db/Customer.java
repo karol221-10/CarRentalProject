@@ -3,22 +3,45 @@ package com.psk_project.car_rental.db;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Klient")
 public class Customer {
 
+    @Column(name = "id_klienta")
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int customerId;
 
+    @Column(name = "imie", nullable = false, length = 30)
     private String name;
+
+    @Column(name = "nazwisko", nullable = false, length = 20)
     private String surname;
+
+    @Column(name = "PESEL", nullable = false, length = 11)
     private String pesel;
+
+    @Column(name = "nr_telefonu", nullable = true, unique = true, length = 12)
     private String phone;
+
+    @Column(name = "rodzaj_dokumentu", nullable = false, length = 15)
     private String documentType;
+
+    @Column(name = "nr_dowodu", nullable = false, length = 10)
     private String idNumber;
+
+    @Column(name = "miejscowosc", nullable = false, length = 30)
     private String place;
+
+    @Column(name = "adres", nullable = false, length = 30)
     private String address;
+
+    @Column(name = "kod_pocztowy", nullable = false, length = 6)
     private String postal;
+
+    @Column(name = "poczta", nullable = false, length = 30)
     private String postOffice;
+
+    @Column(name = "uwagi", nullable = false, length = 200)
     private String rentalID;
 
 
