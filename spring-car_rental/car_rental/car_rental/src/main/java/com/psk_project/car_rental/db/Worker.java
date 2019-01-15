@@ -12,6 +12,7 @@ public class Worker implements java.io.Serializable {
     private String postal;
     private String postOffice;
     private int rentalID;
+    private int salary;
 
     public int getWorkerID() {
         return workerID;
@@ -99,5 +100,13 @@ public class Worker implements java.io.Serializable {
 
     public void setRentalID(int rentalID) {
         this.rentalID = rentalID;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 }

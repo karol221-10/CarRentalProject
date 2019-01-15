@@ -15,8 +15,6 @@ public class CustomerController {
     public List<Worker> hello() {
         System.out.println("Hit me!");
         List<Worker> works = new ArrayList<Worker>();
-        works.add(new Worker());
-        works.add(new Worker());
         return works;
     }
 }
