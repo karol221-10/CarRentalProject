@@ -13,6 +13,7 @@ public class Worker implements java.io.Serializable {
     private String postOffice;
     private int rentalID;
     private int salary;
+    private boolean hidden;
 
     public int getWorkerID() {
         return workerID;
@@ -108,5 +109,13 @@ public class Worker implements java.io.Serializable {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 }
