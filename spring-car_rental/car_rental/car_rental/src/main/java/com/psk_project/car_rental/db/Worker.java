@@ -1,7 +1,7 @@
 package com.psk_project.car_rental.db;
 
 public class Worker implements java.io.Serializable {
-    private int workerID;
+    private int workerID = -1;
     private String name;
     private String surname;
     private String pesel;
@@ -12,9 +12,21 @@ public class Worker implements java.io.Serializable {
     private String postal;
     private String postOffice;
     private int rentalID = -1;
-    private int salary;
+    private int salary = -1;
     private boolean hidden;
-
+    public void update(Worker work) {
+        if(work.name!=null) name=work.name;
+        if(work.surname!=null) surname=work.surname;
+        if(work.pesel!=null) pesel=work.pesel;
+        if(work.phone!=null) phone=work.phone;
+        if(work.sex!=null) sex=work.sex;
+        if(work.city!=null) city=work.city;
+        if(work.address!=null) address=work.address;
+        if(work.postal!=null) postal=work.postal;
+        if(work.postOffice!=null) postOffice=work.postOffice;
+        if(work.rentalID!=-1) rentalID=work.rentalID;
+        if(work.salary!=-1) salary=work.salary;
+    }
     public int getWorkerID() {
         return workerID;
     }

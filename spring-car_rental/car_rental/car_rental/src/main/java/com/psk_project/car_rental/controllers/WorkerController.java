@@ -45,14 +45,14 @@ public class WorkerController {
         return resultList;
     }
     @RequestMapping(value="/", method= RequestMethod.PUT)
-    @Transactional
     public String putWorker(@RequestBody Worker input ) {
         workerService.addWorker(input);
         return "OK";
     }
-
-    @Transactional
-    void insertWorkerWithQuery(Worker input) {
-
+    @RequestMapping(value="/{ID}" ,method=RequestMethod.PATCH)
+    public String updateWorker(@PathVariable(value="ID") int id, @RequestBody Worker input) {
+        input.setWorkerID(id);
+        workerService.updateWorker(input);
+        return "OK";
     }
 }
