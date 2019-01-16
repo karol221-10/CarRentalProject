@@ -17,8 +17,6 @@ import java.util.List;
 @RequestMapping("/worker")
 public class WorkerController {
     @Autowired
-    private EntityManager entityManager;
-    @Autowired
     private WorkerService workerService;
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public List<Worker> getWorkers() {
