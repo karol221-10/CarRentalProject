@@ -73,12 +73,13 @@ public class CustomerService {
         q.setParameter(2,oldCustomer.getSurname());
         q.setParameter(3,oldCustomer.getPesel());
         q.setParameter(4,oldCustomer.getPhone());
-        q.setParameter(5,oldCustomer.getDocumentType());
-        q.setParameter(6,oldCustomer.getPlace());
-        q.setParameter(7,oldCustomer.getAddress());
-        q.setParameter(8,oldCustomer.getPostal());
-        q.setParameter(9,oldCustomer.getPostOffice());
-        q.setParameter(10,oldCustomer.getRemarks());
+        q.setParameter(5,oldCustomer.getIdNumber());
+        q.setParameter(6,oldCustomer.getDocumentType());
+        q.setParameter(7,oldCustomer.getPlace());
+        q.setParameter(8,oldCustomer.getAddress());
+        q.setParameter(9,oldCustomer.getPostal());
+        q.setParameter(10,oldCustomer.getPostOffice());
+        q.setParameter(11,oldCustomer.getRemarks());
         q.executeUpdate();
         entityManager.getTransaction().commit();
     }
@@ -86,18 +87,20 @@ public class CustomerService {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
         entityManager.getTransaction().begin();
-        Query q = entityManager.createNativeQuery("INSERT INTO klient(imie, nazwisko, pesel, nr_telefonu, rodzaj_dokumentu, nr_dowodu, miejscowosc, adres, kod_pocztowy, poczta, uwagi) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-        q.setParameter(0,input.getCustomerId());
-        q.setParameter(1,input.getName());
-        q.setParameter(2,input.getSurname());
-        q.setParameter(3,input.getPesel());
-        q.setParameter(4,input.getPhone());
-        q.setParameter(5,input.getDocumentType());
-        q.setParameter(6,input.getPlace());
-        q.setParameter(7,input.getAddress());
-        q.setParameter(8,input.getPostal());
-        q.setParameter(9,input.getPostOffice());
-        q.setParameter(10,input.getRemarks());
+        Query q = entityManager.createNativeQuery("INSERT INTO klient(id_klienta, imie, nazwisko, pesel, nr_telefonu, rodzaj_dokumentu, nr_dowodu, miejscowosc, adres, kod_pocztowy, poczta, uwagi) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+        q.setParameter(1,input.getCustomerId());
+        q.setParameter(2,input.getName());
+        q.setParameter(3,input.getSurname());
+        q.setParameter(4,input.getPesel());
+        q.setParameter(5,input.getPhone());
+        q.setParameter(6,input.getIdNumber());
+        q.setParameter(7,input.getDocumentType());
+        q.setParameter(8,input.getPlace());
+        q.setParameter(9,input.getAddress());
+        q.setParameter(10,input.getPostal());
+        q.setParameter(11,input.getPostOffice());
+        q.setParameter(12,input.getRemarks());
+
         q.executeUpdate();
         entityManager.getTransaction().commit();
     }

@@ -41,7 +41,7 @@ public class WorkerService {
             worker.setPostOffice((String)object[9]);
             if(object[10]==null) worker.setRentalID(-1);
             else worker.setRentalID(((BigDecimal)object[10]).intValue());
-        //    if(object[11]==null) worker.setSalary(-1); else worker.setSalary(((BigDecimal)object[11]).intValue());
+           if(object[11]==null) worker.setSalary(-1); else worker.setSalary(((BigDecimal)object[11]).intValue());
             resultList.add(worker);
         }
         return resultList;

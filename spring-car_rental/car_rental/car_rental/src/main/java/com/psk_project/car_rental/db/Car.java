@@ -1,18 +1,34 @@
 package com.psk_project.car_rental.db;
 
 public class Car implements java.io.Serializable {
-    private int carID;
+    private int carID= -1;
     private String registrationNumber;
     private String mark;
     private String model;
-    private int priceListID;
+    private int priceListID= -1;
     private String body;
     private String bodyNumber;
     private String productionDate;
-    private int enginePower;
-    private int mileage;
+    private int enginePower= -1;
+    private int mileage= -1;
     private String fuelType;
     private String comments;
+
+    public void update(Car car) {
+        if (car.carID != -1) carID = car.carID;
+        if (car.registrationNumber != null) registrationNumber = car.registrationNumber;
+        if (car.mark != null) mark = car.mark;
+        if (car.model != null) model = car.model;
+        if (car.priceListID != -1) priceListID = car.priceListID;
+        if (car.body != null) body = car.body;
+        if (car.bodyNumber != null) bodyNumber = car.bodyNumber;
+        if (car.productionDate != null) productionDate = car.productionDate;
+        if (car.enginePower != -1) enginePower = car.enginePower;
+        if (car.mileage != -1) mileage = car.mileage;
+        if (car.fuelType != null) fuelType = car.fuelType;
+        if (car.comments != null) comments = car.comments;
+    }
+
     public int getCarID() {
         return carID;
     }
