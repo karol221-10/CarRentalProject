@@ -11,7 +11,7 @@ public class Worker implements java.io.Serializable {
     private String address;
     private String postal;
     private String postOffice;
-    private int rentalID;
+    private int rentalID = -1;
     private int salary;
     private boolean hidden;
 

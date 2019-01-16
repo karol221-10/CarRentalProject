@@ -1,13 +1,11 @@
 package com.psk_project.car_rental.controllers;
 
 import com.psk_project.car_rental.db.Worker;
+import com.psk_project.car_rental.services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -20,6 +18,8 @@ import java.util.List;
 public class WorkerController {
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private WorkerService workerService;
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public List<Worker> getWorkers() {
         Query query = entityManager.createNativeQuery("SELECT * FROM pracownik");
@@ -44,32 +44,15 @@ public class WorkerController {
         }
         return resultList;
     }
-    @Transactional
     @RequestMapping(value="/", method= RequestMethod.PUT)
+    @Transactional
     public String putWorker(@RequestBody Worker input ) {
-        String sql = "INSERT INTO pracownik VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-        Query qu = entityManager.createNativeQuery(sql);
-        qu.setParameter(1,input.getWorkerID());
-        qu.setParameter(2,input.getName());
-        qu.setParameter(3,input.getSurname());
-        qu.setParameter(4,input.getPesel());
-        qu.setParameter(5,input.getPhone());
-        qu.setParameter(6,input.getSex());
-        qu.setParameter(7,input.getCity());
-        qu.setParameter(8,input.getAddress());
-        qu.setParameter(9,input.getPostal());
-        qu.setParameter(10,input.getPostOffice());
-        if(input.getRentalID()==-1) qu.setParameter(11,null);
-        else qu.setParameter(11,input.getRentalID());
-        qu.setParameter(12,input.getSalary());
-        String res;
-        try
-        {
-            qu.executeUpdate();
-            return "OK";
-        }
-        catch(Exception e ) {
-            return "error";
-        }
+        workerService.addWorker(input);
+        return "OK";
+    }
+
+    @Transactional
+    void insertWorkerWithQuery(Worker input) {
+
     }
 }
