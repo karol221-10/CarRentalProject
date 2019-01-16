@@ -1,51 +1,38 @@
+
 package com.psk_project.car_rental.db;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "Klient")
-public class Customer {
 
-    @Column(name = "id_klienta")
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private int customerId;
+public class Customer implements java.io.Serializable {
 
-    @Column(name = "imie", nullable = false, length = 30)
+    private int customerId = -1;
     private String name;
-
-    @Column(name = "nazwisko", nullable = false, length = 20)
     private String surname;
-
-    @Column(name = "PESEL", nullable = false, length = 11)
     private String pesel;
-
-    @Column(name = "nr_telefonu", nullable = true, unique = true, length = 12)
     private String phone;
-
-    @Column(name = "rodzaj_dokumentu", nullable = false, length = 15)
     private String documentType;
-
-    @Column(name = "nr_dowodu", nullable = false, length = 10)
     private String idNumber;
-
-    @Column(name = "miejscowosc", nullable = false, length = 30)
     private String place;
-
-    @Column(name = "adres", nullable = false, length = 30)
     private String address;
-
-    @Column(name = "kod_pocztowy", nullable = false, length = 6)
     private String postal;
-
-    @Column(name = "poczta", nullable = false, length = 30)
     private String postOffice;
-
-    @Column(name = "uwagi", nullable = false, length = 200)
-    private String rentalID;
+    private String remarks;
 
 
-    public Customer() { }
+    public void update(Customer cust) {
+        if (cust.name != null) name = cust.name;
+        if (cust.surname != null) surname = cust.surname;
+        if (cust.pesel != null) pesel = cust.pesel;
+        if (cust.phone != null) phone = cust.phone;
+        if (cust.documentType != null) documentType = cust.documentType;
+        if (cust.idNumber != null) idNumber = cust.idNumber;
+        if (cust.place != null) place = cust.place;
+        if (cust.address != null) address = cust.address;
+        if (cust.postal != null) postal = cust.postal;
+        if (cust.postOffice != null) postOffice = cust.postOffice;
+        if (cust.remarks != null) remarks = cust.remarks;
+    }
+
 
     public int getCustomerId() { return customerId; }
 
@@ -91,8 +78,10 @@ public class Customer {
 
     public void setPostOffice(String postOffice) { this.postOffice = postOffice; }
 
-    public String getRentalID() { return rentalID; }
+    public String getRemarks() { return remarks; }
 
-    public void setRentalID(String rentalID) { this.rentalID = rentalID;
+    public void setRemarks(String remarks) { this.remarks = remarks;
     }
 }
+
+

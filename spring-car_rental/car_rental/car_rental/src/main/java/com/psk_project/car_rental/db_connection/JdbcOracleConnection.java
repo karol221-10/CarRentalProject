@@ -16,7 +16,7 @@ public class JdbcOracleConnection {
             // since JDBC 4.0, but added here for backward compatibility
             Class.forName("oracle.jdbc.OracleDriver");
 
-            String dbURL2 = "jdbc:oracle:thin:@localhost:1521:xe";
+            String dbURL2 = "jdbc:oracle:thin:@localhost:1521:orcl";
 
 
             conn = DriverManager.getConnection(dbURL2, ConnectPass.username, ConnectPass.password);
