@@ -41,7 +41,7 @@ public class WorkerService {
             worker.setPostOffice((String)object[9]);
             if(object[10]==null) worker.setRentalID(-1);
             else worker.setRentalID(((BigDecimal)object[10]).intValue());
-            //      worker.setSalary(((BigDecimal)object[11]).intValue());
+            if(object[11]==null) worker.setSalary(-1); else worker.setSalary(((BigDecimal)object[11]).intValue());
             resultList.add(worker);
         }
         return resultList;
@@ -67,6 +67,7 @@ public class WorkerService {
             worker.setPostOffice((String)object[9]);
             if(object[10]==null) worker.setRentalID(-1);
             else worker.setRentalID(((BigDecimal)object[10]).intValue());
+            if(object[11]==null) worker.setSalary(-1); else worker.setSalary(((BigDecimal)object[11]).intValue());
             return worker;
         }
         else return new Worker();
@@ -75,9 +76,7 @@ public class WorkerService {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
         entityManager.getTransaction().begin();
-        System.out.println("Prepare to get worker");
         Worker oldWorker = getWorker(input.getWorkerID());
-        System.out.println("Updated worker");
         oldWorker.update(input);
         Query q = entityManager.createNativeQuery("UPDATE pracownik SET imie=?,nazwisko=?,pesel=?,nr_telefonu=?,miejscowosc=?,adres=?,kod_pocztowy=?,poczta=?,plec=?,pensja=? WHERE id_pracownika=?");
         q.setParameter(1,oldWorker.getName());
@@ -124,6 +123,14 @@ public class WorkerService {
             qu.executeUpdate();
         }
         entityManager.getTransaction().commit();
-
+    }
+    public void deleteWorker(int ID) {
+        EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
+        EntityManager entityManager = fact.createEntityManager();
+        entityManager.getTransaction().begin();
+        Query q = entityManager.createNativeQuery("DELETE FROM pracownik WHERE id_pracownika=?");
+        q.setParameter(1,ID);
+        q.executeUpdate();
+        entityManager.getTransaction().commit();
     }
 }

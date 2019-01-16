@@ -22,27 +22,7 @@ public class WorkerController {
     private WorkerService workerService;
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public List<Worker> getWorkers() {
-        Query query = entityManager.createNativeQuery("SELECT * FROM pracownik");
-        List<Object[]> rows = query.getResultList();
-        List<Worker> resultList = new ArrayList<Worker>();
-        for(Object[] object : rows) {
-            Worker worker = new Worker();
-            worker.setWorkerID(((BigDecimal)object[0]).intValue());
-            worker.setName((String)object[1]);
-            worker.setSurname((String)object[2]);
-            worker.setPesel((String)object[3]);
-            worker.setPhone((String)object[4]);
-            worker.setSex((String)object[5]);
-            worker.setCity((String)object[6]);
-            worker.setAddress((String)object[7]);
-            worker.setPostal((String)object[8]);
-            worker.setPostOffice((String)object[9]);
-            if(object[10]==null) worker.setRentalID(-1);
-            else worker.setRentalID(((BigDecimal)object[10]).intValue());
-      //      worker.setSalary(((BigDecimal)object[11]).intValue());
-            resultList.add(worker);
-        }
-        return resultList;
+        return workerService.getWorkerList();
     }
     @RequestMapping(value="/", method= RequestMethod.PUT)
     public String putWorker(@RequestBody Worker input ) {
@@ -54,5 +34,14 @@ public class WorkerController {
         input.setWorkerID(id);
         workerService.updateWorker(input);
         return "OK";
+    }
+    @RequestMapping(value="/{ID}",method=RequestMethod.DELETE)
+    public String deleteWorker(@PathVariable(value="ID") int id) {
+        workerService.deleteWorker(id);
+        return "OK";
+    }
+    @RequestMapping(value="/{ID}",method=RequestMethod.GET)
+    public Worker getSingleWorker(@PathVariable(value="ID") int id) {
+        return workerService.getWorker(id);
     }
 }
