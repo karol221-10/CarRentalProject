@@ -60,13 +60,14 @@ public class InsuranceService {
         entityManager.getTransaction().begin();
         Insurance oldInsurance = get(input.getInsuranceID());
         oldInsurance.update(input);
-        Query q = entityManager.createNativeQuery("UPDATE ubezpieczenia SET id_auta=?, rodzaj_ubezpieczenia=?, data_poczatku_ubezpieczenia=?, data_konca_ubezpieczenia=?,skladka_roczna=?,data_zawarcia_ubezpieczenia=?");
+        Query q = entityManager.createNativeQuery("UPDATE ubezpieczenia SET id_auta=?, rodzaj_ubezpieczenia=?, data_poczatku_ubezpieczenia=?, data_konca_ubezpieczenia=?,skladka_roczna=?,data_zawarcia_ubezpieczenia=? WHERE id_ubezpieczenia=?");
         q.setParameter(1,oldInsurance.getCarID());
         q.setParameter(2,oldInsurance.getInsuranceType());
         q.setParameter(3,oldInsurance.getStartDate());
         q.setParameter(4,oldInsurance.getEndDate());
         q.setParameter(5,oldInsurance.getPrice());
         q.setParameter(6,oldInsurance.getInclusion());
+        q.setParameter(7,oldInsurance.getInsuranceID());
         q.executeUpdate();
         entityManager.getTransaction().commit();
     }
