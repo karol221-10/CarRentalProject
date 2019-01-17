@@ -1,7 +1,6 @@
 package com.psk_project.car_rental.services;
 
 import com.psk_project.car_rental.db.PriceList;
-import com.psk_project.car_rental.db.Worker;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -56,7 +55,7 @@ public class PriceListService {
         entityManager.getTransaction().begin();
         PriceList oldPriceList = getPriceList(input.getPriceListID());
         oldPriceList.update(input);
-        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_za_h_wypozyczenia =?,cena_za_km=?,data_zmiany =?,id_auta");
+        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_za_h_wypozyczenia =?,cena_za_km=?,data_zmiany =?,id_auta= ?");
         q.setParameter(1,oldPriceList.getPriceForH());
         q.setParameter(2,oldPriceList.getPriceForKm());
         q.setParameter(3,oldPriceList.getChangeDate());

@@ -3,7 +3,7 @@ package com.psk_project.car_rental.controllers;
 import com.psk_project.car_rental.db.Customer;
 import com.psk_project.car_rental.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -5,11 +5,7 @@ import com.psk_project.car_rental.services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.*;
-import javax.transaction.Transactional;
-import java.math.BigDecimal;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
