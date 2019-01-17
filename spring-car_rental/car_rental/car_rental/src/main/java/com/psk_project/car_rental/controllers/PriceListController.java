@@ -40,7 +40,7 @@ public class PriceListController {
         return "OK";
     }
     @RequestMapping(value="/{ID}",method=RequestMethod.GET)
-    public PriceList getSingleWorker(@PathVariable(value="ID") int id) {
+    public PriceList getSinglePriceList(@PathVariable(value="ID") int id) {
         return priceListService.getPriceList(id);
     }
 

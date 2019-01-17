@@ -22,23 +22,23 @@ public class CarController {
     }
 
     @RequestMapping(value="/", method= RequestMethod.PUT)
-    public String putCustomer(@RequestBody Car input ) {
+    public String putCar(@RequestBody Car input ) {
         carService.addCar(input);
         return "OK";
     }
     @RequestMapping(value="/{ID}" ,method=RequestMethod.PATCH)
-    public String updateCustomers(@PathVariable(value="ID") int id, @RequestBody Car input) {
+    public String updateCar(@PathVariable(value="ID") int id, @RequestBody Car input) {
         input.setCarID(id);
         carService.updateCar(input);
         return "OK";
     }
     @RequestMapping(value="/{ID}",method=RequestMethod.DELETE)
-    public String deleteCustomers(@PathVariable(value="ID") int id) {
+    public String deleteCar(@PathVariable(value="ID") int id) {
         carService.deleteCar(id);
         return "OK";
     }
     @RequestMapping(value="/{ID}",method=RequestMethod.GET)
-    public Car getSingleCustomer(@PathVariable(value="ID") int id) {
+    public Car getSingleCar(@PathVariable(value="ID") int id) {
         return carService.getCar(id);
     }
 }

@@ -1,8 +1,8 @@
 package com.psk_project.car_rental.controllers;
 
-import com.psk_project.car_rental.db.Car;
+
 import com.psk_project.car_rental.db.Servicing;
-import com.psk_project.car_rental.services.CarService;
+
 import com.psk_project.car_rental.services.ServicingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
