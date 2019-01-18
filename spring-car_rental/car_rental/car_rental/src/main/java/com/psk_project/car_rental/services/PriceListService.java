@@ -22,9 +22,9 @@ public class PriceListService {
         for(Object[] object : rows) {
             PriceList priceList = new PriceList();
             priceList.setPriceListID(((BigDecimal)object[0]).intValue());
-            priceList.setPriceForH((Integer) object[1]);
-            priceList.setPriceForKm((Integer)object[2]);
-            priceList.setChangeDate((Integer) object[3]);
+            priceList.setPriceForH(((BigDecimal) object[1]).intValue());
+            priceList.setPriceForKm(((BigDecimal)object[2]).intValue());
+            priceList.setChangeDate(((BigDecimal) object[3]).intValue());
             priceList.setCarID((Integer) object[4]);
             resultList.add(priceList);
         }
@@ -40,9 +40,9 @@ public class PriceListService {
             Object[] object = objects.get(0);
             PriceList priceList = new PriceList();
             priceList.setPriceListID(((BigDecimal)object[0]).intValue());
-            priceList.setPriceForH((Integer) object[1]);
-            priceList.setPriceForKm((Integer)object[2]);
-            priceList.setChangeDate((Integer) object[3]);
+            priceList.setPriceForH(((BigDecimal) object[1]).intValue());
+            priceList.setPriceForKm(((BigDecimal)object[2]).intValue());
+            priceList.setChangeDate(((BigDecimal) object[3]).intValue());
             priceList.setCarID((Integer) object[4]);
             return priceList;
         }

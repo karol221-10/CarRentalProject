@@ -13,24 +13,22 @@ import java.util.List;
 
 @Service
 public class FacilityService {
-
     public List<Facility> getFacilityList() {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
-        Query query = entityManager.createNativeQuery("SELECT * FROM placowki");
+        Query query = entityManager.createNativeQuery("SELECT * FROM Placowki");
         List<Object[]> rows = query.getResultList();
         List<Facility> resultList = new ArrayList<Facility>();
         for(Object[] object : rows) {
             Facility facility = new Facility();
             facility.setFacialityID(((BigDecimal)object[0]).intValue());
             facility.setAdress((String)object[1]);
-            facility.setManagerID(((BigDecimal) object[2]).intValue());
+            facility.setManagerID((Integer) object[2]);
             facility.setPhoneNumber((String)object[3]);
             resultList.add(facility);
         }
         return resultList;
     }
-
     public Facility getFacility(int ID) {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
@@ -42,7 +40,7 @@ public class FacilityService {
             Facility facility = new Facility();
             facility.setFacialityID(((BigDecimal)object[0]).intValue());
             facility.setAdress((String)object[1]);
-            facility.setManagerID(((BigDecimal) object[2]).intValue());
+            facility.setManagerID((Integer) object[2]);
             facility.setPhoneNumber((String)object[3]);
             return facility;
         }
