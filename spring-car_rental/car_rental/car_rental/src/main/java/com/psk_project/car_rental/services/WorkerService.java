@@ -21,6 +21,7 @@ import java.util.List;
 
 @Service
 public class WorkerService {
+
     public List<Worker> getWorkerList() {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
@@ -46,6 +47,7 @@ public class WorkerService {
         }
         return resultList;
     }
+
     public Worker getWorker(int ID) {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();

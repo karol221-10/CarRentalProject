@@ -13,10 +13,11 @@ import java.util.List;
 
 @Service
 public class CustomerService {
+
     public List<Customer> getCustomerList() {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
-        Query query = entityManager.createNativeQuery("SELECT * FROM pracownik");
+        Query query = entityManager.createNativeQuery("SELECT * FROM klient");
         List<Object[]> rows = query.getResultList();
         List<Customer> resultList = new ArrayList<Customer>();
         for(Object[] object : rows) {
@@ -29,10 +30,10 @@ public class CustomerService {
             customer.setDocumentType((String)object[5]);
             customer.setIdNumber((String)object[6]);
             customer.setPlace((String)object[7]);
-            customer.setPostal((String)object[8]);
-            customer.setPostOffice((String)object[9]);
-            customer.setRemarks((String)object[10]);
-
+            customer.setAddress((String)object[8]);
+            customer.setPostal((String)object[9]);
+            customer.setPostOffice((String)object[10]);
+            customer.setRemarks((String)object[11]);
             resultList.add(customer);
         }
         return resultList;
@@ -54,9 +55,10 @@ public class CustomerService {
             customer.setDocumentType((String)object[5]);
             customer.setIdNumber((String)object[6]);
             customer.setPlace((String)object[7]);
-            customer.setPostal((String)object[8]);
-            customer.setPostOffice((String)object[9]);
-            customer.setRemarks((String)object[10]);
+            customer.setAddress((String)object[8]);
+            customer.setPostal((String)object[9]);
+            customer.setPostOffice((String)object[10]);
+            customer.setRemarks((String)object[11]);
             return customer;
         }
         else return new Customer();

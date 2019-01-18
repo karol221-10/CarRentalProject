@@ -1,5 +1,7 @@
 package com.psk_project.car_rental.db;
 
+import java.math.BigDecimal;
+
 public class Facility implements  java.io.Serializable {
     private int facialityID = -1;
     private String adress;
@@ -13,19 +15,35 @@ public class Facility implements  java.io.Serializable {
 
     }
 
-    public int getFacialityID() { return facialityID; }
+    public int getFacialityID() {
+        return facialityID;
+    }
 
-    public void setFacialityID(int facialityID) { this.facialityID = facialityID; }
+    public void setFacialityID(int facialityID) {
+        this.facialityID = facialityID;
+    }
 
-    public String getAdress() { return adress; }
+    public String getAdress() {
+        return adress;
+    }
 
-    public void setAdress(String adress) { this.adress = adress; }
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
 
-    public int getManagerID() { return managerID; }
+    public int getManagerID() {
+        return managerID;
+    }
 
-    public void setManagerID(int managerID) { this.managerID = managerID; }
+    public void setManagerID(int managerID) {
+        this.managerID = managerID;
+    }
 
-    public String getPhoneNumber() { return phoneNumber; }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

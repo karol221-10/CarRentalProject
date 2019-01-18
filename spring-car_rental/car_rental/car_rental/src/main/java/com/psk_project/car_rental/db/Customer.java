@@ -6,7 +6,7 @@ package com.psk_project.car_rental.db;
 public class Customer implements java.io.Serializable {
 
     private int customerId = -1;
-    private String name = "base";
+    private String name;
     private String surname;
     private String pesel;
     private String phone;

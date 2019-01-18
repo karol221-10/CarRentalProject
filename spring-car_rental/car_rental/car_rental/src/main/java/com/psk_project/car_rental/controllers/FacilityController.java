@@ -14,7 +14,7 @@ public class FacilityController {
     @Autowired
     private FacilityService facilityService;
     @RequestMapping(method = RequestMethod.GET, value = "/")
-    public List<Facility> getCustomers() {
+    public List<Facility> getFacility() {
         return facilityService.getFacilityList();
     }
     @RequestMapping(value="/", method= RequestMethod.PUT)
