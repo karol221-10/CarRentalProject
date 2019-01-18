@@ -25,7 +25,7 @@ public class PriceListService {
             priceList.setPriceForH(((BigDecimal) object[1]).intValue());
             priceList.setPriceForKm(((BigDecimal)object[2]).intValue());
             priceList.setChangeDate(((BigDecimal) object[3]).intValue());
-            priceList.setCarID((Integer) object[4]);
+            priceList.setCarID(((BigDecimal) object[4]).intValue());
             resultList.add(priceList);
         }
         return resultList;
@@ -43,7 +43,7 @@ public class PriceListService {
             priceList.setPriceForH(((BigDecimal) object[1]).intValue());
             priceList.setPriceForKm(((BigDecimal)object[2]).intValue());
             priceList.setChangeDate(((BigDecimal) object[3]).intValue());
-            priceList.setCarID((Integer) object[4]);
+            priceList.setCarID(((BigDecimal) object[4]).intValue());
             return priceList;
         }
         else return new PriceList();
