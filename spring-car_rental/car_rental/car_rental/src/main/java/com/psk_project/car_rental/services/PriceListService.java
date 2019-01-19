@@ -54,12 +54,12 @@ public class PriceListService {
         entityManager.getTransaction().begin();
         PriceList oldPriceList = getPriceList(input.getPriceListID());
         oldPriceList.update(input);
-        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_za_h_wypozyczenia=?,cena_za_km=?,data_zmiany =? where id_cennika=?");
+        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_za_h_wypozyczenia=?,cena_za_km=?,data_zmiany =? WHERE id_cennika=?");
         q.setParameter(1,oldPriceList.getPriceForH());
         q.setParameter(2,oldPriceList.getPriceForKm());
         q.setParameter(3,oldPriceList.getChangeDate());
+        q.setParameter(4,oldPriceList.getPriceListID());
         q.executeUpdate();
-
         entityManager.getTransaction().commit();
     }
 
