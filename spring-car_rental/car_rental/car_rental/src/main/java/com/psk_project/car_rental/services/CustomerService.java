@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.*;
 @Service
 public class CustomerService {
 
@@ -82,6 +81,7 @@ public class CustomerService {
         q.setParameter(9,oldCustomer.getPostal());
         q.setParameter(10,oldCustomer.getPostOffice());
         q.setParameter(11,oldCustomer.getRemarks());
+        q.setParameter(12,oldCustomer.getCustomerId());
         q.executeUpdate();
         entityManager.getTransaction().commit();
     }
