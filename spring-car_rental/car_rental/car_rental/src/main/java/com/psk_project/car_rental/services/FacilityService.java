@@ -18,12 +18,12 @@ public class FacilityService {
         EntityManager entityManager = fact.createEntityManager();
         Query query = entityManager.createNativeQuery("SELECT * FROM Placowki");
         List<Object[]> rows = query.getResultList();
-        List<Facility> resultList = new ArrayList<Facility>();
+        List<Facility> resultList = new ArrayList<>();
         for(Object[] object : rows) {
             Facility facility = new Facility();
             facility.setFacialityID(((BigDecimal)object[0]).intValue());
             facility.setAdress((String)object[1]);
-            facility.setManagerID((Integer) object[2]);
+            if(object[2]==null) facility.setManagerID(-1); else facility.setManagerID(((BigDecimal)object[2]).intValue());
             facility.setPhoneNumber((String)object[3]);
             resultList.add(facility);
         }
@@ -40,7 +40,7 @@ public class FacilityService {
             Facility facility = new Facility();
             facility.setFacialityID(((BigDecimal)object[0]).intValue());
             facility.setAdress((String)object[1]);
-            facility.setManagerID((Integer) object[2]);
+            if(object[2]==null) facility.setManagerID(-1); else facility.setManagerID(((BigDecimal)object[2]).intValue());
             facility.setPhoneNumber((String)object[3]);
             return facility;
         }
@@ -53,11 +53,16 @@ public class FacilityService {
         entityManager.getTransaction().begin();
         Facility oldFacility = getFacility(input.getFacialityID());
         oldFacility.update(input);
-        Query q = entityManager.createNativeQuery("UPDATE Placowki SET adres =?,id_kierownika =?,nr_telefonu =? WHERE id_placowki=?");
+        Query q = entityManager.createNativeQuery("UPDATE Placowki SET adres =?,nr_telefonu =? WHERE id_placowki=?");
         q.setParameter(1,oldFacility.getAdress());
-        q.setParameter(2,oldFacility.getManagerID());
-        q.setParameter(3,oldFacility.getPhoneNumber());
-
+        q.setParameter(2,oldFacility.getPhoneNumber());
+        q.executeUpdate();
+        if(oldFacility.getManagerID()!=-1) {
+            Query qu = entityManager.createNativeQuery("UPDATE Placowki SET id_kierownika=? WHERE id_placowki=?");
+            qu.setParameter(1,oldFacility.getManagerID());
+            qu.setParameter(2,oldFacility.getFacialityID());
+            qu.executeUpdate();
+        }
         entityManager.getTransaction().commit();
     }
 
@@ -65,12 +70,10 @@ public class FacilityService {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
         entityManager.getTransaction().begin();
-        Query q = entityManager.createNativeQuery("INSERT INTO Placowki (id_placowki,adres,id_kierownika,nr_telefonu) VALUES(?,?,?,?)");
+        Query q = entityManager.createNativeQuery("INSERT INTO Placowki (id_placowki,adres,nr_telefonu) VALUES(?,?,?)");
         q.setParameter(1,input.getFacialityID());
         q.setParameter(2,input.getAdress());
-        q.setParameter(3,input.getManagerID());
-        q.setParameter(4,input.getPhoneNumber());
-
+        q.setParameter(3,input.getPhoneNumber());
         q.executeUpdate();
         if(input.getManagerID()!=-1) {
             Query qu = entityManager.createNativeQuery("UPDATE Placowki SET id_kierownika=? WHERE id_placowki=?");
@@ -80,6 +83,7 @@ public class FacilityService {
         }
         entityManager.getTransaction().commit();
     }
+
     public void deleteFacility(int ID) {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
