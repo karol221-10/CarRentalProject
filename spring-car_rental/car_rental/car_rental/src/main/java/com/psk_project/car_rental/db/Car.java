@@ -1,5 +1,7 @@
 package com.psk_project.car_rental.db;
 
+import java.util.Date;
+
 public class Car implements java.io.Serializable {
     private int carID= -1;
     private String registrationNumber;
@@ -8,14 +10,13 @@ public class Car implements java.io.Serializable {
     private int priceListID= -1;
     private String body;
     private String bodyNumber;
-    private String productionDate;
+    private Date productionDate;
     private int enginePower= -1;
     private int mileage= -1;
     private String fuelType;
     private String comments;
 
     public void update(Car car) {
-        if (car.carID != -1) carID = car.carID;
         if (car.registrationNumber != null) registrationNumber = car.registrationNumber;
         if (car.mark != null) mark = car.mark;
         if (car.model != null) model = car.model;
@@ -85,11 +86,11 @@ public class Car implements java.io.Serializable {
         this.bodyNumber = bodyNumber;
     }
 
-    public String getProductionDate() {
+    public Date getProductionDate() {
         return productionDate;
     }
 
-    public void setProductionDate(String productionDate) {
+    public void setProductionDate(Date productionDate) {
         this.productionDate = productionDate;
     }
 

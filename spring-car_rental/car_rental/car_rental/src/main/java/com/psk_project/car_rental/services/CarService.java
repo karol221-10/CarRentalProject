@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,10 +30,10 @@ public class CarService {
             car.setRegistrationNumber((String)object[1]);
             car.setMark((String)object[2]);
             car.setModel((String)object[3]);
-            car.setPriceListID(((BigDecimal)object[4]).intValue());
+            if(object[4]==null) car.setPriceListID(-1); else car.setPriceListID(((BigDecimal)object[4]).intValue());
             car.setBodyNumber((String)object[5]);
             car.setBody((String)object[6]);
-            car.setProductionDate((String)object[7]);
+            car.setProductionDate((Date)object[7]);
             car.setEnginePower(((BigDecimal)object[8]).intValue());
             car.setMileage(((BigDecimal)object[9]).intValue());
             car.setFuelType((String)object[10]);
@@ -54,10 +55,10 @@ public class CarService {
             car.setRegistrationNumber((String)object[1]);
             car.setMark((String)object[2]);
             car.setModel((String)object[3]);
-            car.setPriceListID(((BigDecimal)object[4]).intValue());
+            if(object[4]==null) car.setPriceListID(-1); else car.setPriceListID(((BigDecimal)object[4]).intValue());
             car.setBodyNumber((String)object[5]);
             car.setBody((String)object[6]);
-            car.setProductionDate((String)object[7]);
+            car.setProductionDate((Date)object[7]);
             car.setEnginePower(((BigDecimal)object[8]).intValue());
             car.setMileage(((BigDecimal)object[9]).intValue());
             car.setFuelType((String)object[10]);
@@ -73,19 +74,24 @@ public class CarService {
         entityManager.getTransaction().begin();
         Car oldCar = getCar(input.getCarID());
         oldCar.update(input);
-        Query q = entityManager.createNativeQuery("UPDATE samochody SET numer_rejestracyjny=?,marka=?,m_model=?,id_cennika=?,numer_nadwozia=?,typ_nadwozia=?,data_produkcji=?,moc_silnika=?,przebieg_auta=?,rodzaj_paliwa=?, uwagi=?  WHERE id_auta=?");
+        Query q = entityManager.createNativeQuery("UPDATE samochody SET numer_rejestracyjny=?,marka=?,m_model=?,numer_nadwozia=?,typ_nadwozia=?,data_produkcji=?,moc_silnika=?,przebieg_auta=?,rodzaj_paliwa=?, uwagi=?  WHERE id_auta=?");
         q.setParameter(1,oldCar.getRegistrationNumber());
         q.setParameter(2,oldCar.getMark());
         q.setParameter(3,oldCar.getModel());
-        q.setParameter(4,oldCar.getPriceListID());
-        q.setParameter(5,oldCar.getBodyNumber());
-        q.setParameter(6,oldCar.getBody());
-        q.setParameter(7,oldCar.getProductionDate());
-        q.setParameter(8,oldCar.getEnginePower());
-        q.setParameter(9,oldCar.getMileage());
-        q.setParameter(10,oldCar.getFuelType());
-        q.setParameter(11,oldCar.getComments());
+        q.setParameter(4,oldCar.getBodyNumber());
+        q.setParameter(5,oldCar.getBody());
+        q.setParameter(6,oldCar.getProductionDate());
+        q.setParameter(7,oldCar.getEnginePower());
+        q.setParameter(8,oldCar.getMileage());
+        q.setParameter(9,oldCar.getFuelType());
+        q.setParameter(10,oldCar.getComments());
         q.executeUpdate();
+        if(oldCar.getPriceListID()!=-1) {
+            Query qu = entityManager.createNativeQuery("UPDATE samochody SET id_cennika=? WHERE id_auta=?");
+            qu.setParameter(1,oldCar.getPriceListID());
+            qu.setParameter(2,oldCar.getCarID());
+            qu.executeUpdate();
+        }
         entityManager.getTransaction().commit();
     }
 
@@ -93,21 +99,26 @@ public class CarService {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
         entityManager.getTransaction().begin();
-        Query q = entityManager.createNativeQuery("INSERT INTO samochody(id_auta,numer_rejestracyjny,marka,m_model,id_cennika,numer_nadwozia,typ_nadwozia,data_produkcji,moc_silnika,przebieg_auta,rodzaj_paliwa, uwagi) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+        Query q = entityManager.createNativeQuery("INSERT INTO samochody(id_auta,numer_rejestracyjny,marka,m_model,numer_nadwozia,typ_nadwozia,data_produkcji,moc_silnika,przebieg_auta,rodzaj_paliwa, uwagi) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         q.setParameter(1,input.getCarID());
         q.setParameter(2,input.getRegistrationNumber());
         q.setParameter(3,input.getMark());
         q.setParameter(4,input.getModel());
-        q.setParameter(5,input.getPriceListID());
-        q.setParameter(6,input.getBodyNumber());
-        q.setParameter(7,input.getBody());
-        q.setParameter(8,input.getProductionDate());
-        q.setParameter(9,input.getEnginePower());
-        q.setParameter(10,input.getMileage());
-        q.setParameter(11,input.getFuelType());
-        q.setParameter(12,input.getComments());
-
+        q.setParameter(5,input.getBodyNumber());
+        q.setParameter(6,input.getBody());
+        q.setParameter(7,input.getProductionDate());
+        q.setParameter(8,input.getEnginePower());
+        q.setParameter(9,input.getMileage());
+        q.setParameter(10,input.getFuelType());
+        q.setParameter(11,input.getComments());
         q.executeUpdate();
+
+        if(input.getPriceListID()!=-1) {
+            Query qu = entityManager.createNativeQuery("UPDATE samochody SET id_cennika=? WHERE id_auta=?");
+            qu.setParameter(1,input.getPriceListID());
+            qu.setParameter(2,input.getCarID());
+            qu.executeUpdate();
+        }
         entityManager.getTransaction().commit();
     }
     public void deleteCar(int ID) {
