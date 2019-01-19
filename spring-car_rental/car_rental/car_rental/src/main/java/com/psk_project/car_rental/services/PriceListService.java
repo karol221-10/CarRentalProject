@@ -54,7 +54,7 @@ public class PriceListService {
         entityManager.getTransaction().begin();
         PriceList oldPriceList = getPriceList(input.getPriceListID());
         oldPriceList.update(input);
-        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_za_h_wypozyczenia=?,cena_za_km=?,data_zmiany =? WHERE id_cennika=?");
+        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_h_wyp=?,cena_za_km=?,data_zmiany=? WHERE id_cennika=?");
         q.setParameter(1,oldPriceList.getPriceForH());
         q.setParameter(2,oldPriceList.getPriceForKm());
         q.setParameter(3,oldPriceList.getChangeDate());
@@ -68,7 +68,7 @@ public class PriceListService {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
         entityManager.getTransaction().begin();
-        Query q = entityManager.createNativeQuery("INSERT INTO Cennik(id_cennika,cena_za_h_wypozyczenia,cena_za_km,data_zmiany) VALUES(?,?,?,?,?)");
+        Query q = entityManager.createNativeQuery("INSERT INTO Cennik(id_cennika,cena_h_wyp,cena_za_km,data_zmiany) VALUES(?,?,?,?,?)");
         q.setParameter(1,input.getPriceListID());
         q.setParameter(2,input.getPriceForH());
         q.setParameter(3,input.getPriceForKm());
