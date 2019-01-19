@@ -1,12 +1,14 @@
 package com.psk_project.car_rental.db;
 
+import java.util.Date;
+
 public class Rental {
     private int rentalId= -1;
     private int carId =-1;
     private int customerId= -1;
     private int workerId =-1;
-    private int odometerBeforeRental =-1;
-    private int rentalDate = -1;
+    private String odometerBeforeRental;
+    private Date rentalDate ;
     private int bail = -1;
     private int priceListId =-1;
 
@@ -15,8 +17,8 @@ public class Rental {
         if(rental.carId!= -1) carId=rental.carId;
         if(rental.customerId!= -1) customerId=rental.customerId;
         if(rental.workerId!= -1) workerId=rental.workerId;
-        if(rental.odometerBeforeRental!= -1) odometerBeforeRental=rental.odometerBeforeRental;
-        if(rental.rentalDate!= -1) rentalDate=rental.rentalDate;
+        if(rental.odometerBeforeRental!= null) odometerBeforeRental=rental.odometerBeforeRental;
+        if(rental.rentalDate!= null) rentalDate=rental.rentalDate;
         if(rental.bail!= -1) bail=rental.bail;
         if(rental.priceListId!= -1) priceListId=rental.priceListId;
     }
@@ -52,19 +54,19 @@ public class Rental {
         this.workerId = workerId;
     }
 
-    public int getOdometerBeforeRental() {
+    public String getOdometerBeforeRental() {
         return odometerBeforeRental;
     }
 
-    public void setOdometerBeforeRental(int odometerBeforeRental) {
+    public void setOdometerBeforeRental(String odometerBeforeRental) {
         this.odometerBeforeRental = odometerBeforeRental;
     }
 
-    public int getRentalDate() {
+    public Date getRentalDate() {
         return rentalDate;
     }
 
-    public void setRentalDate(int rentalDate) {
+    public void setRentalDate(Date rentalDate) {
         this.rentalDate = rentalDate;
     }
 

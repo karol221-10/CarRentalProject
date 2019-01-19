@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,8 +27,8 @@ public class RentalService {
             if(object[1]==null) rental.setCarId(-1); else rental.setCarId(((BigDecimal)object[1]).intValue());
             if(object[2]==null) rental.setCustomerId(-1); else rental.setCustomerId(((BigDecimal)object[2]).intValue());
             if(object[3]==null) rental.setWorkerId(-1); else rental.setWorkerId(((BigDecimal)object[3]).intValue());
-            rental.setOdometerBeforeRental(((BigDecimal)object[4]).intValue());
-            rental.setRentalDate(((BigDecimal)object[5]).intValue());
+            rental.setOdometerBeforeRental((String)object[4]);
+            rental.setRentalDate((Date)object[5]);
             rental.setBail(((BigDecimal)object[6]).intValue());
             if(object[7]==null) rental.setPriceListId(-1); else rental.setPriceListId(((BigDecimal)object[7]).intValue());
             resultList.add(rental);
@@ -49,8 +50,8 @@ public class RentalService {
             if(object[1]==null) rental.setCarId(-1); else rental.setCarId(((BigDecimal)object[1]).intValue());
             if(object[2]==null) rental.setCustomerId(-1); else rental.setCustomerId(((BigDecimal)object[2]).intValue());
             if(object[3]==null) rental.setWorkerId(-1); else rental.setWorkerId(((BigDecimal)object[3]).intValue());
-            rental.setOdometerBeforeRental(((BigDecimal)object[4]).intValue());
-            rental.setRentalDate(((BigDecimal)object[5]).intValue());
+            rental.setOdometerBeforeRental((String)object[4]);
+            rental.setRentalDate((Date)object[5]);
             rental.setBail(((BigDecimal)object[6]).intValue());
             if(object[7]==null) rental.setPriceListId(-1); else rental.setPriceListId(((BigDecimal)object[7]).intValue());
             return rental;
@@ -66,7 +67,10 @@ public class RentalService {
         Rental oldRental = getRental(input.getRentalId());
         oldRental.update(input);
         Query q = entityManager.createNativeQuery("UPDATE Wypozyczenia SET licznik_przed_wypozyczeniem=?,data_wypozyczenia =?,KAUCJA=? WHERE id_wypozyczenia=?");
-        q.setParameter(1,oldRental.getRentalId());
+        q.setParameter(1,oldRental.getOdometerBeforeRental());
+        q.setParameter(2,oldRental.getRentalDate());
+        q.setParameter(3,oldRental.getBail());
+        q.setParameter(4,oldRental.getRentalId());
         q.executeUpdate();
 
         if(oldRental.getRentalId()!=-1) {
