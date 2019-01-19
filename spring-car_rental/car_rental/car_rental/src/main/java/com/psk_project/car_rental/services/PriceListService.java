@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,8 +25,7 @@ public class PriceListService {
             priceList.setPriceListID(((BigDecimal)object[0]).intValue());
             priceList.setPriceForH(((BigDecimal) object[1]).intValue());
             priceList.setPriceForKm(((BigDecimal)object[2]).intValue());
-            priceList.setChangeDate(((BigDecimal) object[3]).intValue());
-            priceList.setCarID(((BigDecimal) object[4]).intValue());
+            priceList.setChangeDate((Date) object[3]);
             resultList.add(priceList);
         }
         return resultList;
@@ -42,8 +42,7 @@ public class PriceListService {
             priceList.setPriceListID(((BigDecimal)object[0]).intValue());
             priceList.setPriceForH(((BigDecimal) object[1]).intValue());
             priceList.setPriceForKm(((BigDecimal)object[2]).intValue());
-            priceList.setChangeDate(((BigDecimal) object[3]).intValue());
-            priceList.setCarID(((BigDecimal) object[4]).intValue());
+            priceList.setChangeDate((Date) object[3]);
             return priceList;
         }
         else return new PriceList();
@@ -55,19 +54,12 @@ public class PriceListService {
         entityManager.getTransaction().begin();
         PriceList oldPriceList = getPriceList(input.getPriceListID());
         oldPriceList.update(input);
-        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_za_h_wypozyczenia =?,cena_za_km=?,data_zmiany =?,id_auta= ?");
+        Query q = entityManager.createNativeQuery("UPDATE Cennik SET cena_za_h_wypozyczenia =?,cena_za_km=?,data_zmiany =?");
         q.setParameter(1,oldPriceList.getPriceForH());
         q.setParameter(2,oldPriceList.getPriceForKm());
         q.setParameter(3,oldPriceList.getChangeDate());
-        q.setParameter(4,oldPriceList.getCarID());
         q.executeUpdate();
 
-        if(oldPriceList.getCarID()!=-1) {
-            Query qu = entityManager.createNativeQuery("UPDATE Cennik SET id_auta=? WHERE id_cennika=?");
-            qu.setParameter(1,oldPriceList.getCarID());
-            qu.setParameter(2,oldPriceList.getPriceListID());
-            qu.executeUpdate();
-        }
         entityManager.getTransaction().commit();
     }
 
@@ -76,20 +68,13 @@ public class PriceListService {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
         entityManager.getTransaction().begin();
-        Query q = entityManager.createNativeQuery("INSERT INTO Cennik(id_cennika,cena_za_h_wypozyczenia,cena_za_km,data_zmiany,id_auta) VALUES(?,?,?,?,?,?)");
+        Query q = entityManager.createNativeQuery("INSERT INTO Cennik(id_cennika,cena_za_h_wypozyczenia,cena_za_km,data_zmiany) VALUES(?,?,?,?,?)");
         q.setParameter(1,input.getPriceListID());
         q.setParameter(2,input.getPriceForH());
         q.setParameter(3,input.getPriceForKm());
         q.setParameter(4,input.getChangeDate());
-        q.setParameter(5,input.getCarID());
         q.executeUpdate();
 
-        if(input.getCarID()!=-1) {
-            Query qu = entityManager.createNativeQuery("UPDATE Cennik SET id_auta=? WHERE id_cennika=?");
-            qu.setParameter(1,input.getCarID());
-            qu.setParameter(2,input.getPriceListID());
-            qu.executeUpdate();
-        }
         entityManager.getTransaction().commit();
     }
     public void deletePriceList(int ID) {

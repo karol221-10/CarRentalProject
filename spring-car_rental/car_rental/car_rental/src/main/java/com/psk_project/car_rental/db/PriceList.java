@@ -1,19 +1,18 @@
 package com.psk_project.car_rental.db;
 
+import java.util.Date;
+
 public class PriceList implements  java.io.Serializable {
     private int priceListID =-1;
     private int priceForH =-1;
     private int priceForKm =-1;
-    private  int changeDate =-1;
-    private int carID =-1;
+    private Date changeDate;
+
 
     public void update(PriceList pl) {
-        if(carID!=-1) carID = pl.carID;
-        if(priceListID!=-1) priceListID=pl.priceListID;
         if(priceForH!=-1) priceForH=pl.priceForH;
         if(priceForKm!=-1) priceForKm=pl.priceForKm;
-        if(changeDate!=-1) changeDate=pl.changeDate;
-        if(carID!=-1) carID=pl.carID;
+        if(changeDate!= null) changeDate=pl.changeDate;
     }
 
     public int getPriceListID() {
@@ -40,19 +39,12 @@ public class PriceList implements  java.io.Serializable {
         this.priceForKm = priceForKm;
     }
 
-    public int getChangeDate() {
+    public Date getChangeDate() {
         return changeDate;
     }
 
-    public void setChangeDate(int changeDate) {
+    public void setChangeDate(Date changeDate) {
         this.changeDate = changeDate;
     }
 
-    public int getCarID() {
-        return carID;
-    }
-
-    public void setCarID(int carID) {
-        this.carID = carID;
-    }
 }
