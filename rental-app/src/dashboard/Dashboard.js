@@ -16,11 +16,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../dashComponents/nav';
 import {Route} from "react-router-dom";
-import Customers from "../pages/Customers";
+import Page from "../pages/Page.js";
 import Home from "../pages/Home";
-import Workers from "../pages/Workers";
-import Rentals from "../pages/Rentals";
-import Cars from "../pages/cars";
 
 
 const drawerWidth = 240;
@@ -173,10 +170,16 @@ class Dashboard extends React.Component {
         <main className={classes.content}> 
           <div className={classes.appBarSpacer} style={{marginTop:80+'px'}} >
            <Route path="/" component={Home} exact></Route>
-           <Route path="/customers" component={Customers}></Route>
-           <Route path="/workers" component={Workers}></Route>
-           <Route path="/rentals" component={Rentals}></Route>
-           <Route path="/cars" component={Cars}></Route>
+           <Route path="/car" component={() => <Page path="car/"/>}></Route>
+           <Route path="/carreturn" component={() => <Page path="carReturn/"/>}></Route>
+           <Route path="/customer" component={() => <Page path="customer/"/>}></Route>
+           <Route path="/facility" component={() => <Page path="facility/"/>}></Route>
+           <Route path="/insurance" component={() => <Page path="insurance/"/>}></Route>
+           <Route path="/invoice" component={() => <Page path="invoice/"/>}></Route>
+           <Route path="/pricelist" component={() => <Page path="pricelist/"/>}></Route>
+           <Route path="/rental" component={() => <Page path="rental/"/>}></Route>
+           <Route path="/servicing" component={() => <Page path="servicing/"/>}></Route>
+           <Route path="/worker" component={() => <Page path="worker/"/>}></Route>
           </div>
         </main>
       </div>

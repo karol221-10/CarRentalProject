@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import './style.css'
+
 
 
 
@@ -19,10 +21,10 @@ export default class DashTable extends React.Component {
     return (
       <Paper >
         <Table >
-          <TableHead>
+          <TableHead className="columnName">
             <TableRow>
               {this.props.props.map((column) => (
-                <TableCell  key={column}>{column}</TableCell>
+                <TableCell  key={column} >{column}</TableCell>
               ))}
             </TableRow>
           </TableHead>
