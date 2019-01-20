@@ -1,19 +1,21 @@
 package com.psk_project.car_rental.db;
 
+import java.util.Date;
+
 public class Servicing implements  java.io.Serializable {
     private int overviewID =-1;
     private int carID = -1;
     private String overviewType;
-    private int expirationDate= -1;
-    private int executionDate= -1;
+    private Date expirationDate;
+    private Date executionDate;
     private int price= -1;
     private String comments;
 
     public void update(Servicing ov) {
         if(carID!=-1) carID = ov.carID;
         if(overviewType!=null) overviewType=ov.overviewType;
-        if(expirationDate!=-1) expirationDate=ov.expirationDate;
-        if(executionDate!=-1) executionDate=ov.executionDate;
+        if(expirationDate!=null) expirationDate=ov.expirationDate;
+        if(executionDate!=null) executionDate=ov.executionDate;
         if(price!=-1) price=ov.price;
         if(comments!=null) comments=ov.comments;
     }
@@ -42,19 +44,19 @@ public class Servicing implements  java.io.Serializable {
         this.overviewType = overviewType;
     }
 
-    public int getExpirationDate() {
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(int expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public int getExecutionDate() {
+    public Date getExecutionDate() {
         return executionDate;
     }
 
-    public void setExecutionDate(int executionDate) {
+    public void setExecutionDate(Date executionDate) {
         this.executionDate = executionDate;
     }
 

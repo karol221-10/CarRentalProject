@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,8 +26,8 @@ public class ServicingService {
                 servicing.setOverviewID(((BigDecimal)object[0]).intValue());
                 servicing.setCarID((Integer) object[1]);
                 servicing.setOverviewType((String) object[2]);
-                servicing.setExpirationDate((Integer) object[3]);
-                servicing.setExecutionDate((Integer) object[4]);
+                servicing.setExpirationDate((Date) object[3]);
+                servicing.setExecutionDate((Date) object[4]);
                 servicing.setPrice((Integer) object[5]);
                 servicing.setComments((String) object[6]);
                 resultList.add(servicing);
@@ -46,8 +47,8 @@ public class ServicingService {
                 servicing.setOverviewID(((BigDecimal)object[0]).intValue());
                 servicing.setCarID((Integer) object[1]);
                 servicing.setOverviewType((String) object[2]);
-                servicing.setExpirationDate((Integer) object[3]);
-                servicing.setExecutionDate((Integer) object[4]);
+                servicing.setExpirationDate((Date) object[3]);
+                servicing.setExecutionDate((Date) object[4]);
                 servicing.setPrice((Integer) object[5]);
                 servicing.setComments((String) object[6]);
                 return servicing;
