@@ -95,8 +95,8 @@ public class CustomerService {
         q.setParameter(3,input.getSurname());
         q.setParameter(4,input.getPesel());
         q.setParameter(5,input.getPhone());
-        q.setParameter(6,input.getIdNumber());
-        q.setParameter(7,input.getDocumentType());
+        q.setParameter(6,input.getDocumentType());
+        q.setParameter(7,input.getIdNumber());
         q.setParameter(8,input.getPlace());
         q.setParameter(9,input.getAddress());
         q.setParameter(10,input.getPostal());
