@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping(value = "/whorentend")
 public class WhoRentedController {
     @Autowired
-    WhoRentedService whoRentedService;
+    private WhoRentedService whoRentedService;
 
     @RequestMapping(value="/", method= RequestMethod.GET)
     List<WhoRented> getServiceExpirTerm() {

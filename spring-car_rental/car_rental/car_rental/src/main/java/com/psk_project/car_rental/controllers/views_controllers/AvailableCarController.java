@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/car")
 public class AvailableCarController {
     @Autowired
-    AvailableCarService availableCarService;
+    private AvailableCarService availableCarService;
 
     @RequestMapping(value="/available", method= RequestMethod.GET)
     List<AvailableCar> getAvaCars() {

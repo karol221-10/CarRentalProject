@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/pricelist")
 public class RentCostController {
     @Autowired
-    RentCostService rentCostService;
+    private RentCostService rentCostService;
 
     @RequestMapping(value="/cost", method= RequestMethod.GET)
     List<RentCost> getRentCost() {

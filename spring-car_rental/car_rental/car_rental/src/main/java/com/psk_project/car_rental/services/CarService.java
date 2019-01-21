@@ -30,7 +30,6 @@ public class CarService {
             car.setRegistrationNumber((String)object[1]);
             car.setMark((String)object[2]);
             car.setModel((String)object[3]);
-            if(object[4]==null) car.setPriceListID(-1); else car.setPriceListID(((BigDecimal)object[4]).intValue());
             car.setBodyNumber((String)object[5]);
             car.setBody((String)object[6]);
             car.setProductionDate((Date)object[7]);
@@ -55,7 +54,6 @@ public class CarService {
             car.setRegistrationNumber((String)object[1]);
             car.setMark((String)object[2]);
             car.setModel((String)object[3]);
-            if(object[4]==null) car.setPriceListID(-1); else car.setPriceListID(((BigDecimal)object[4]).intValue());
             car.setBodyNumber((String)object[5]);
             car.setBody((String)object[6]);
             car.setProductionDate((Date)object[7]);
@@ -86,12 +84,7 @@ public class CarService {
         q.setParameter(9,oldCar.getFuelType());
         q.setParameter(10,oldCar.getComments());
         q.executeUpdate();
-        if(oldCar.getPriceListID()!=-1) {
-            Query qu = entityManager.createNativeQuery("UPDATE samochody SET id_cennika=? WHERE id_auta=?");
-            qu.setParameter(1,oldCar.getPriceListID());
-            qu.setParameter(2,oldCar.getCarID());
-            qu.executeUpdate();
-        }
+
         entityManager.getTransaction().commit();
     }
 
@@ -99,7 +92,7 @@ public class CarService {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
         entityManager.getTransaction().begin();
-        Query q = entityManager.createNativeQuery("INSERT INTO samochody(id_auta,numer_rejestracyjny,marka,m_model,numer_nadwozia,typ_nadwozia,data_produkcji,moc_silnika,przebieg_auta,rodzaj_paliwa, uwagi,id_cennika) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+        Query q = entityManager.createNativeQuery("INSERT INTO samochody(id_auta,numer_rejestracyjny,marka,m_model,numer_nadwozia,typ_nadwozia,data_produkcji,moc_silnika,przebieg_auta,rodzaj_paliwa, uwagi) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         q.setParameter(1,input.getCarID());
         q.setParameter(2,input.getRegistrationNumber());
         q.setParameter(3,input.getMark());
@@ -111,7 +104,6 @@ public class CarService {
         q.setParameter(9,input.getMileage());
         q.setParameter(10,input.getFuelType());
         q.setParameter(11,input.getComments());
-        q.setParameter(12,input.getPriceListID());
         q.executeUpdate();
         entityManager.getTransaction().commit();
     }

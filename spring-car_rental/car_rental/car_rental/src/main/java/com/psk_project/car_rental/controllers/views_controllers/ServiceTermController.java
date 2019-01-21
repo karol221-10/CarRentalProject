@@ -15,7 +15,7 @@ import java.util.List;
 public class ServiceTermController {
 
     @Autowired
-    ServiceTermService serviceTermService;
+    private ServiceTermService serviceTermService;
 
     @RequestMapping(value="/service-expiration", method= RequestMethod.GET)
     List<ServiceTerm> getServiceExpirTerm() {

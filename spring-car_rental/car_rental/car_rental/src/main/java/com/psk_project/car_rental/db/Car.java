@@ -7,7 +7,6 @@ public class Car implements java.io.Serializable {
     private String registrationNumber;
     private String mark;
     private String model;
-    private int priceListID= -1;
     private String body;
     private String bodyNumber;
     private Date productionDate;
@@ -20,7 +19,6 @@ public class Car implements java.io.Serializable {
         if (car.registrationNumber != null) registrationNumber = car.registrationNumber;
         if (car.mark != null) mark = car.mark;
         if (car.model != null) model = car.model;
-        if (car.priceListID != -1) priceListID = car.priceListID;
         if (car.body != null) body = car.body;
         if (car.bodyNumber != null) bodyNumber = car.bodyNumber;
         if (car.productionDate != null) productionDate = car.productionDate;
@@ -60,14 +58,6 @@ public class Car implements java.io.Serializable {
 
     public void setModel(String model) {
         this.model = model;
-    }
-
-    public int getPriceListID() {
-        return priceListID;
-    }
-
-    public void setPriceListID(int priceListID) {
-        this.priceListID = priceListID;
     }
 
     public String getBody() {

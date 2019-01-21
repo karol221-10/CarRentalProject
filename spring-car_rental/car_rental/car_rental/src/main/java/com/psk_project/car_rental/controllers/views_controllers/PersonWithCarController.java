@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/rented")
 public class PersonWithCarController {
     @Autowired
-    PersonWithCarService personWithCarService;
+    private PersonWithCarService personWithCarService;
 
     @RequestMapping(value="/", method= RequestMethod.GET)
     List<PersonWithCar> getPersonWithCar() { return personWithCarService.getPersonsWithCar(); }
