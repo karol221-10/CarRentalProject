@@ -7,17 +7,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-
-
 @Service
-public class AdditionService {
-    public void addition(int additionAmount){
+public class PayRiseService {
+    public void payRaiseForPoorestWorkers(){
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("JPAService");
         EntityManager entityManager = fact.createEntityManager();
-        Query query = entityManager.createNativeQuery("EXECUTE PROCEDURE pDodatek(?);");
-        query.setParameter(1,additionAmount);
+        Query query = entityManager.createNativeQuery("EXECUTE PROCEDURE pZaMalo();");
         query.executeUpdate();
         entityManager.getTransaction().commit();
-        entityManager.joinTransaction();
     }
 }
