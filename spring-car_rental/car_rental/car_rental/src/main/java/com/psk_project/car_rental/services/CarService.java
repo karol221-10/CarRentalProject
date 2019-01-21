@@ -30,13 +30,13 @@ public class CarService {
             car.setRegistrationNumber((String)object[1]);
             car.setMark((String)object[2]);
             car.setModel((String)object[3]);
-            car.setBodyNumber((String)object[5]);
-            car.setBody((String)object[6]);
-            car.setProductionDate((Date)object[7]);
-            car.setEnginePower(((BigDecimal)object[8]).intValue());
-            car.setMileage(((BigDecimal)object[9]).intValue());
-            car.setFuelType((String)object[10]);
-            car.setComments((String)object[11]);
+            car.setBodyNumber((String)object[4]);
+            car.setBody((String)object[5]);
+            car.setProductionDate((Date)object[6]);
+            car.setEnginePower(((BigDecimal)object[7]).intValue());
+            car.setMileage(((BigDecimal)object[8]).intValue());
+            car.setFuelType((String)object[9]);
+            car.setComments((String)object[10]);
             resultList.add(car);
         }
         return resultList;
@@ -54,13 +54,13 @@ public class CarService {
             car.setRegistrationNumber((String)object[1]);
             car.setMark((String)object[2]);
             car.setModel((String)object[3]);
-            car.setBodyNumber((String)object[5]);
-            car.setBody((String)object[6]);
-            car.setProductionDate((Date)object[7]);
-            car.setEnginePower(((BigDecimal)object[8]).intValue());
-            car.setMileage(((BigDecimal)object[9]).intValue());
-            car.setFuelType((String)object[10]);
-            car.setComments((String)object[11]);
+            car.setBodyNumber((String)object[4]);
+            car.setBody((String)object[5]);
+            car.setProductionDate((Date)object[6]);
+            car.setEnginePower(((BigDecimal)object[7]).intValue());
+            car.setMileage(((BigDecimal)object[8]).intValue());
+            car.setFuelType((String)object[9]);
+            car.setComments((String)object[10]);
             return car;
         }
         else return new Car();
