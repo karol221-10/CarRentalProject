@@ -24,12 +24,12 @@ public class PersonWithCarService {
         List<PersonWithCar> resultList = new ArrayList<>();
         for (Object[] object : rows) {
             PersonWithCar personWithCar = new PersonWithCar();
-            personWithCar.setCustomerId(((BigDecimal) object[0]).intValue());
+            personWithCar.setCustomerId((String) object[0]);
             personWithCar.setName((String) object[1]);
             personWithCar.setSurname((String) object[2]);
             personWithCar.setPesel((String) object[3]);
-            if(object[4]==null) personWithCar.setCarId(-1); else personWithCar.setCarId(((BigDecimal)object[4]).intValue());
-            personWithCar.setDate((Date) object[5]);
+            if(object[4]==null) personWithCar.setCarId(null); else personWithCar.setCarId((String)object[4]);
+            personWithCar.setDate((String) object[5]);
             resultList.add(personWithCar);
         }
         return resultList;

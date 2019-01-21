@@ -1,14 +1,14 @@
 package com.psk_project.car_rental.db.views_db;
 
 public class NumberOfWorkers {
-    private int numberOFWorkers = -1;
+    private String numberOFWorkers;
     private String adres;
 
-    public int getNumberOFWorkers() {
+    public String getNumberOFWorkers() {
         return numberOFWorkers;
     }
 
-    public void setNumberOFWorkers(int numberOFWorkers) {
+    public void setNumberOFWorkers(String numberOFWorkers) {
         this.numberOFWorkers = numberOFWorkers;
     }
 

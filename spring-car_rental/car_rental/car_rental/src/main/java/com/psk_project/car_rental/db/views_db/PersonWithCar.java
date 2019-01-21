@@ -3,18 +3,18 @@ package com.psk_project.car_rental.db.views_db;
 import java.util.Date;
 
 public class PersonWithCar {
-    private int customerId = -1;//ID_KLIENTA
+    private String customerId;//ID_KLIENTA
     private String name;//IMIE
     private String surname;//NAZWISKO
     private String pesel;//PESEL
-    private int carId =-1;//ID_AUTA
-    private Date date;//DATA_WYPOZYCZENIA
+    private String carId;//ID_AUTA
+    private String date;//DATA_WYPOZYCZENIA
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
@@ -42,19 +42,19 @@ public class PersonWithCar {
         this.pesel = pesel;
     }
 
-    public int getCarId() {
+    public String getCarId() {
         return carId;
     }
 
-    public void setCarId(int carId) {
+    public void setCarId(String carId) {
         this.carId = carId;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

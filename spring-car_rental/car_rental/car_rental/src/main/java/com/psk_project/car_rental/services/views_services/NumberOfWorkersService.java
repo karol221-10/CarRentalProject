@@ -23,7 +23,7 @@ public class NumberOfWorkersService {
             List<NumberOfWorkers> resultList = new ArrayList<>();
             for(Object[] object : rows) {
                 NumberOfWorkers numOfWorkers = new NumberOfWorkers();
-                numOfWorkers.setNumberOFWorkers(((BigDecimal)object[0]).intValue());
+                numOfWorkers.setNumberOFWorkers((String)object[0]);
                 numOfWorkers.setAdres((String)object[1]);
                 resultList.add(numOfWorkers);
             }
