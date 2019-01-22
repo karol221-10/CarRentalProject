@@ -24,11 +24,11 @@ public class ServicingService {
             for(Object[] object : rows) {
                 Servicing servicing= new Servicing();
                 servicing.setOverviewID(((BigDecimal)object[0]).intValue());
-                servicing.setCarID((Integer) object[1]);
+                servicing.setCarID(((BigDecimal) object[1]).intValue());
                 servicing.setOverviewType((String) object[2]);
                 servicing.setExpirationDate((Date) object[3]);
                 servicing.setExecutionDate((Date) object[4]);
-                servicing.setPrice((Integer) object[5]);
+                servicing.setPrice(((BigDecimal) object[5]).intValue());
                 servicing.setComments((String) object[6]);
                 resultList.add(servicing);
             }
@@ -45,11 +45,11 @@ public class ServicingService {
                 Object[] object = objects.get(0);
                 Servicing servicing= new Servicing();
                 servicing.setOverviewID(((BigDecimal)object[0]).intValue());
-                servicing.setCarID((Integer) object[1]);
+                servicing.setCarID(((BigDecimal) object[1]).intValue());
                 servicing.setOverviewType((String) object[2]);
                 servicing.setExpirationDate((Date) object[3]);
                 servicing.setExecutionDate((Date) object[4]);
-                servicing.setPrice((Integer) object[5]);
+                servicing.setPrice(((BigDecimal) object[5]).intValue());
                 servicing.setComments((String) object[6]);
                 return servicing;
             }
