@@ -181,8 +181,8 @@ class Dashboard extends React.Component {
 
            <Route path="/caravaible" component={() => <Page path="car/available" view={true}/>}></Route>
            <Route path="/rented" component={() => <Page path="rented/" view={true}/>}></Route>
-           <Route path="/car-service" component={() => <Page path="/car/service-expiration" view={true}/>}></Route>
-           <Route path="/whorented" component={() => <Page path="/whorentend/" view={true}/>}></Route>
+           <Route path="/car-service" component={() => <Page path="car/service-expiration" view={true}/>}></Route>
+           <Route path="/whorented" component={() => <Page path="whorentend/" view={true}/>}></Route>
            <Route path="/count" component={() => <Page path="worker/count" view={true}/>}></Route>
            <Route path="/cost" component={() => <Page path="pricelist/cost" view={true}/>}></Route>
           </div>
