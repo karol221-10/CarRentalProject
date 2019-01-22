@@ -169,8 +169,7 @@ class Dashboard extends React.Component {
         </Drawer>
         <main className={classes.content}> 
           <div className={classes.appBarSpacer} style={{marginTop:80+'px'}} >
-           <Route path="/" component={Home} exact></Route>
-           <Route path="/car" component={() => <Page path="car/"/>}></Route>
+           <Route path="/" exact component={() => <Page path="car/" />}></Route>
            <Route path="/carreturn" component={() => <Page path="carReturn/"/>}></Route>
            <Route path="/customer" component={() => <Page path="customer/"/>}></Route>
            <Route path="/facility" component={() => <Page path="facility/"/>}></Route>
@@ -180,6 +179,13 @@ class Dashboard extends React.Component {
            <Route path="/rental" component={() => <Page path="rental/"/>}></Route>
            <Route path="/servicing" component={() => <Page path="servicing/"/>}></Route>
            <Route path="/worker" component={() => <Page path="worker/"/>}></Route>
+
+           <Route path="/caravaible" component={() => <Page path="car/available" view={true}/>}></Route>
+           <Route path="/rented" component={() => <Page path="rented/" view={true}/>}></Route>
+           <Route path="/car-service" component={() => <Page path="/car/service-expiration" view={true}/>}></Route>
+           <Route path="/whorented" component={() => <Page path="/whorentend/" view={true}/>}></Route>
+           <Route path="/count" component={() => <Page path="worker/count" view={true}/>}></Route>
+           <Route path="/cost" component={() => <Page path="pricelist/cost" view={true}/>}></Route>
           </div>
         </main>
       </div>

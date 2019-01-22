@@ -19,12 +19,6 @@ export const mainListItems = (
   <div>
     <ListItem button component={Link} to="/">
       <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button component={Link} to="/car">
-      <ListItemIcon>
       <DirectionsCar/>
       </ListItemIcon>
       <ListItemText primary="Auta" />
@@ -88,24 +82,42 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>raporty</ListSubheader>
-    <ListItem button>
+    <ListSubheader inset>widoki</ListSubheader>
+    <ListItem button component={Link} to="/caravaible">
       <ListItemIcon>
-        <AssignmentIcon />
+        <DirectionsCar/>
       </ListItemIcon>
-      <ListItemText primary="Obecny miesiac" />
+      <ListItemText primary="Dostępne auta" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={Link} to="/rented">
       <ListItemIcon>
-        <AssignmentIcon />
+        <AttachMoney/>
       </ListItemIcon>
-      <ListItemText primary="ostatni kwartał" />
+      <ListItemText primary="Wypożyczone auta" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={Link} to="/car-service">
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="roczny raport" />
+      <ListItemText primary="Wygaśniecie przęglądu" />
+    </ListItem>
+    <ListItem button component={Link} to="/whorented">
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Kto wypożyczył" />
+    </ListItem>
+    <ListItem button component={Link} to="/count">
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Count" />
+    </ListItem>
+    <ListItem button component={Link} to="/cost">
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Koszta" />
     </ListItem>
   </div>
 );

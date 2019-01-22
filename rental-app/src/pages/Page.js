@@ -17,6 +17,7 @@ export default class Page extends React.Component{
         };
     }
     componentWillMount(){
+        console.log(this.props.view);
         axios.get('http://www.kompikownia.pl:8085/'+this.props.path)
         .then(res => {
             const gotData = res.data;
@@ -37,15 +38,16 @@ export default class Page extends React.Component{
         });
     }
     send(){
-        console.log(this.state.object);
+        console.log("wysłano: "+this.state.object);
         axios.put('http://www.kompikownia.pl:8085/'+this.props.path,this.state.object).then((response) => console.log(response));
     }
     delete(){
         axios.delete('http://www.kompikownia.pl:8085/'+this.props.path+this.state.deleteId).then((response) => console.log(response));
+        console.log("skasowano element o ID :"+this.state.deleteId);
     }
     storeDeleteId(e){
         this.setState({deleteId:e.target.value})
-        console.log(this.state.deleteId);
+        
     }
     collectData(e,prop){
         let object = Object.assign({}, this.state.object);
@@ -56,16 +58,22 @@ export default class Page extends React.Component{
     render(){
         return(
             <div>
-
-                {this.state.props.map((prop) =>( 
-                    <TextField key={prop} style={{width:8.2+'%'}} label={prop} onChange={(e) => this.collectData(e,prop)}/> 
-                ))}
-                <Button variant="contained" color="primary" onClick={this.send.bind(this)}>Dodaj</Button>
+              {!this.props.view?(
+                    <div>
+                        {this.state.props.map((prop) =>( 
+                            <TextField key={prop} style={{width:8.2+'%'}} label={prop} onChange={(e) => this.collectData(e,prop)}/> 
+                        ))}
+                        <Button variant="contained" color="primary" onClick={this.send.bind(this)}>Dodaj</Button>
+                        
+                        <Divider/>
+                        
+                        <TextField style={{width:8.2+'%'}} label="Delete ID" onChange={(e) => this.storeDeleteId(e)}/>
+                        <Button variant="contained" color="secondary" onClick={this.delete.bind(this)}>Usuń</Button> 
+                    </div>
+                ):(
+                  <React.Fragment/>
+              )}
                 
-                <Divider/>
-                
-                <TextField style={{width:8.2+'%'}} label="Delete ID" onChange={(e) => this.storeDeleteId(e)}/>
-                <Button variant="contained" color="secondary" onClick={this.delete.bind(this)}>Usuń</Button> 
 
                 <DashTable props={this.state.props} data={this.state.data}/>
                 
