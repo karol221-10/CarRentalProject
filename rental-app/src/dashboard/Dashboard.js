@@ -17,7 +17,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../dashComponents/nav';
 import {Route} from "react-router-dom";
 import Page from "../pages/Page.js";
-import Home from "../pages/Home";
 
 
 const drawerWidth = 240;
@@ -170,7 +169,7 @@ class Dashboard extends React.Component {
         <main className={classes.content}> 
           <div className={classes.appBarSpacer} style={{marginTop:80+'px'}} >
            <Route path="/" exact component={() => <Page path="car/" />}></Route>
-           <Route path="/carreturn" component={() => <Page path="carReturn/"/>}></Route>
+           <Route path="/carreturn" component={() => <Page path="car-return/"/>}></Route>
            <Route path="/customer" component={() => <Page path="customer/"/>}></Route>
            <Route path="/facility" component={() => <Page path="facility/"/>}></Route>
            <Route path="/insurance" component={() => <Page path="insurance/"/>}></Route>
